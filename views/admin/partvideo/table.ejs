@@ -1,0 +1,36 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Order</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for( let i = 0; i < partvideo.length; i++ ) { %>
+        <tr>
+          <td> <%= i + 1 %>   </td>
+          <td>
+            <%= partvideo[i]?.course_id?.title ?? '-' %>
+          </td>
+          <td> <%= partvideo[i].title %>  </td>
+          <td> <%= partvideo[i].order %>  </td>
+          <td>
+            <form action="/partvideo/delete/<%= partvideo[i]._id %>?_method=DELETE" method="POST">
+              <a href="/partvideo/edit/<%= partvideo[i]._id %>" class="btn btn-info btn-sm">
+                <i class="fas fa-pencil-alt"></i>
+                  Ubah
+                </a>
+              <button class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+                Hapus
+              </button>
+
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>

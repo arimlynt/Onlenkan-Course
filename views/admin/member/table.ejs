@@ -1,0 +1,50 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>User</th>
+        <th>Course</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for( let i = 0; i < member.length; i++ ) { %>
+        <tr>
+            <td> <%= i + 1 %>   </td>
+            <td>
+              <%= member[i]?.user_id?.name ?? '-' %>
+            </td>
+            <td>
+                <%= member[i]?.course_id?.title ?? '-' %>
+            </td>
+          <td>
+            <% if (member[i].status === 'Aktif') { %>
+                <span class="badge badge-success">
+                    Aktif        
+                </span>
+            <% } else { %>
+                <span class="badge badge-warning">
+                    NonAktif        
+                </span>
+            <% } %>
+          </td>
+          <td>
+            <form action="/member/status/<%= member[i]._id %>?_method=PUT" method="POST">
+              <button class="btn btn-primary btn-sm">
+                  <% if (member[i].status === 'NonAktif') { %>
+                      <span class="fas fa-check">
+                        Aktifkan                       
+                      </span>                     
+                  <% } else { %> 
+                        <span class="fas fa-times-circle">
+                          NonAktifkan                                                                                
+                        </span>                     
+                  <% } %>
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>

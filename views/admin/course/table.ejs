@@ -1,0 +1,44 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Photo</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for( let i = 0; i < course.length; i++ ) { %>
+        <tr>
+          <td> <%= i + 1 %>   </td>
+          <td> <%= course[i].title %>  </td>
+          <td> <%= course[i].slug %>  </td>
+          <td> <%= course[i]?.category?.name ?? '-' %>  </td>
+          <td> 
+            <span class="badge badge-success">        
+              <%= course[i].status %> 
+            </span>
+          </td>
+          <td>
+            <img width="50" src="http://localhost:3000/uploads/<%= course[i].photo %>" alt="photo">
+          </td>
+          <td>
+            <form action="/course/delete/<%= course[i]._id %>?_method=DELETE" method="POST">
+              <a href="/course/edit/<%= course[i]._id %> " class="btn btn-info btn-sm">
+                <i class="fas fa-pencil-alt"></i>
+                  Ubah
+                </a>
+              <button class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+                Hapus
+              </button>
+
+            </form>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
